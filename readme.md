@@ -13,12 +13,14 @@ The main resources I've used are:
 ## Summary
 
 - [notes](#NOTES)
-    - [CUDA DEV REFERENCE](#CUDA_DEV_REFERENCE)
+    - [CUDA DEV REFERENCE](#CUDA-DEV-REFERENCE)
 
 
 ## NOTES
 
-### CUDA DEV REFERENCE [https://docs.nvidia.com/cuda/cuda-programming-guide](https://docs.nvidia.com/cuda/cuda-programming-guide)
+### CUDA DEV REFERENCE
+
+From: [https://docs.nvidia.com/cuda/cuda-programming-guide](https://docs.nvidia.com/cuda/cuda-programming-guide)
 
 #### Introduction
 
