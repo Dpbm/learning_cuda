@@ -14,6 +14,7 @@ The main resources I've used are:
 
 - [notes](#NOTES)
     - [CUDA DEV REFERENCE](#CUDA-DEV-REFERENCE)
+        - [Introduction](#Introduction)
 
 
 ## NOTES
@@ -101,3 +102,5 @@ From: [https://docs.nvidia.com/cuda/cuda-programming-guide](https://docs.nvidia.
 - PTX can be got from the fatbin and executed for compute capabilities >= to the same of it was especified for it.
 - The driver has the JIT compiler.
 - nvrtc can compile C++ code into PTX at runtime.
+
+![Overview code flow](./assets/code_flow.svg)
