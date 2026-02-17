@@ -1,3 +1,19 @@
+# Learning cuda
+
+This repo contains notes and code that I've done for learning cuda.
+
+The main resources I've used are:
+
+- [https://docs.nvidia.com/cuda/cuda-programming-guide/](https://docs.nvidia.com/cuda/cuda-programming-guide/)
+- [https://docs.nvidia.com/cuda/cuda-driver-api/index.html](https://docs.nvidia.com/cuda/cuda-driver-api/index.html)
+- [https://docs.nvidia.com/cuda/cuda-runtime-api/index.html](https://docs.nvidia.com/cuda/cuda-runtime-api/index.html)
+- [https://docs.nvidia.com/cuda/parallel-thread-execution/index.html](https://docs.nvidia.com/cuda/parallel-thread-execution/index.html)
+
+
+## Summary
+
+- [notes](#NOTES)
+    - [CUDA DEV REFERENCE](#CUDA_DEV_REFERENCE)
 
 
 ## NOTES
@@ -34,6 +50,8 @@
 - You may not try to optimize it yourself, since the GPU may try to optimize it at a low level.
 - But to optimize it, you may use block sizes that are multiples of 32, due to the warp lanes sizes, avoiding letting the last lane with unused parts.
 
+---
+
 - DRAM from GPU is called global memory.
 - CPU DRAM is called host memory or system memory.
 - The virtual memory address space from GPU is distinct from CPU.
@@ -48,20 +66,30 @@
 - Unified memory -> memory allocations that can be accessed for either CPU or GPU.
 - For performance, minimum memory migration and accessing data directly from the processor it resides.
 
+---
+
 - In some situations -> a thread block is suspended and its state is stored in memory (like a context switch), turning the SM free to execute other blocks. This is not common
 - Mapped memory -> a way to access address spaces from CPU via GPU, occours via PCIe or NVLINK. It's not more performant than unified memory or any other way.
+
+---
 
 - Compute capability denotes which features are supported by some GPU.
 - The version is described as X.Y (major.minor).
 - The number itself (like 12.0 -> 120) denotes the SM version (in this case 12.0 -> sm_120).
 
+---
+
 - Cuda runtime is one of the libraries provided by cuda toolkit.
 - Cuda runtime API is built on top of Cuda Driver API (a lower-level API).
+
+---
 
 - PTX is a high level assembly language.
 - Compilers create it as IR.
 - This is IR is dynamically compiled to binary using JIT.
 - Its version also follows the compute capability (compute_120 for compute capability 12.0).
+
+---
 
 - The compiled code is transformed into PTX and then into cubin (binary for cuda), that's specific for each hardware version (compute capability).
 - The code for GPU is stored in a `fatbin` location.
