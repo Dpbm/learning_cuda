@@ -15,6 +15,7 @@ The main resources I've used are:
 - [notes](#NOTES)
     - [CUDA DEV REFERENCE](#CUDA-DEV-REFERENCE)
         - [Introduction](#Introduction)
+        - [Programming GPUS with CUDA](#Programming)
 
 
 ## NOTES
@@ -104,3 +105,21 @@ From: [https://docs.nvidia.com/cuda/cuda-programming-guide](https://docs.nvidia.
 - nvrtc can compile C++ code into PTX at runtime.
 
 ![Overview code flow](./assets/code_flow.svg)
+
+
+#### Programming
+
+- Kernels return `void`.
+- `__global__` specifies that this function is a kernel that can be launched.
+- You can launch a kernel using `<<<>>>` or `cudaLaunchKernelEx`.
+- `<<<grid_size, block_size, n_threads>>>`.
+- There's a limit of threads per block, since all threads in a block are executed in the same SM. In current hardware, a block can have up to 1024 threads. If resources allow, more than one block can be scheduled on a SM at the same time.
+- Kernel execution is assynchronous in relation to the CPU code.
+- To define a 2d or 3d grid/block, use a `dim3`.
+- To access the index of grids/blocks/threads in a kernel, you can use: `threadIdx`, `blockDim`, `blockIdx`, `gridDim`. Each of them have 3 properties being them: `x`, `y` and `z`.
+- We can check if an specific index is within the range of our array. If so we apply the operation, otherwise we ignore this thread (a simple if statement inside the kernel).
+- Cuda CCCL provides the function `cuda::ceil_div` that's handy for finding the number of blocks given the number of threads and the vector length. Basically a division that ceils the value.
+
+- Unified memory (manage allocation) allows the GPU driver to manage the movement between Host and Device data.
+- For unified memory use for allocating `cudaMallocManaged` or marking a variable with `__managed__`.
+
